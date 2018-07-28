@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Form from './form'
 import './App.css';
 import GOOGLE_API_KEY from './dev'
+import SearchResults from './searchResults'
 
 class App extends Component {
   constructor(){
@@ -24,14 +25,14 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const q = this.state.searchTerm
-    fetch("https://www.googleapis.com/books/v1/volumes?q=intitle" + q + "&key=" + GOOGLE_API_KEY)
+    fetch("https://www.googleapis.com/books/v1/volumes?q=intitle:" + q + "&key=" + GOOGLE_API_KEY)
     .then( r => r.json() )
     .then( json => this.setState({ books: json.items }))
   }
 
 
   render() {
-    console.log(this.state.books)
+    //console.log(this.state.books)
     return (
       <div className="App">
         <header className="App-header">
@@ -39,6 +40,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
+        <SearchResults books={this.state.books}/>
       </div>
     );
   }
