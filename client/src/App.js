@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom'
 import Form from './form'
+import Collection from './collection'
 import './App.css';
 import GOOGLE_API_KEY from './dev'
 import SearchResults from './searchResults'
@@ -11,10 +18,10 @@ class App extends Component {
 
     this.state = {
       searchTerm: "",
-      books: [],
-      myBooks: []
+      books: []
     }
   }
+
 
   handleChange = (e) => {
     e.persist()
@@ -44,27 +51,40 @@ class App extends Component {
     fetch('/api/books', {
       method: 'post',
       body: JSON.stringify(bookJSON),
-      //mode: { mode: cors },
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
     }).then( r => r.json() )
-    .catch(e => console.log(e))
-    .then( json => console.log(json) )
+    .catch(e => alert(e))
+    .then( json => alert(json.title + " has been added to your collection!") )
   }
 
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
-        <SearchResults books={this.state.books} handleClick={this.handleClick}/>
-      </div>
+      <Router>
+        <div className="App">
+        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
+          <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
+          <NavLink style={{ marginRight: '10px' }} to="/search">Search</NavLink>
+          <NavLink style={{ marginRight: '10px' }} to="/collection">My Collection</NavLink>
+        </div>
+          <Switch>
+            <Route exact path="/" render={ () => <h1>WELCOME</h1>}/>
+            <Route exact path="/search" render={() => {
+              return (
+                <div>
+                  <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
+                  <SearchResults books={this.state.books} handleClick={this.handleClick}/>
+                </div>
+                )
+              }
+            }/>
+            <Route exact path="/collection" component={Collection}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
