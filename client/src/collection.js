@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MyBook from './MyBook'
 
 class Collection extends Component {
   constructor(){
@@ -15,12 +16,40 @@ class Collection extends Component {
       .then( json => this.setState({ myBooks: json }) )
     }
 
+  handleClick = (e) => {
+    e.persist()
+    const bookId = e.target.parentElement.getAttribute("book-id")
+    fetch('/api/books/' + bookId, {
+      method: 'delete',
+      body: {},
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then( r => r.json() )
+    .then( json => {
+      const books = this.state.myBooks.filter( book => book.id !== parseInt(bookId))
+      this.setState({ myBooks: books })
+      alert(json.title + " has been removed from your collection.")
+      debugger;
+    })
+  }
+
   render(){
-    return(
-      <div>
-        <ul>{this.state.myBooks.map( book => <li key={book.index}>{book.title}</li> )}</ul>
-      </div>
-    )
+    if(this.state.myBooks.length > 0){
+      return(
+        <div>
+          <h2>My Collection</h2>
+          <ul>
+            {this.state.myBooks.map( book => <MyBook key={book.id} book={book} handleClick={this.handleClick}/> )}
+          </ul>
+        </div>
+      )
+    } else {
+      return(
+        <h2>Your Collection is Empty</h2>
+      )
+    }
   }
 
 }
