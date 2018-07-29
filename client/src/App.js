@@ -30,9 +30,32 @@ class App extends Component {
     .then( json => this.setState({ books: json.items }))
   }
 
+  handleClick = (e) => {
+    e.persist()
+    const thisBook = Array.from(e.target.parentElement.children)
+    const bookJSON = {}
+    thisBook.slice(0,3).forEach( bookProp => {
+      if(bookProp.nodeName !== "IMG"){
+        bookJSON[bookProp.getAttribute("class")] = bookProp.innerHTML
+      } else {
+        bookJSON[bookProp.getAttribute("class")] = bookProp.src
+      }
+    })
+    fetch('/api/books', {
+      method: 'post',
+      body: JSON.stringify(bookJSON),
+      //mode: { mode: cors },
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then( r => r.json() )
+    .catch(e => console.log(e))
+    .then( json => console.log(json) )
+  }
+
 
   render() {
-    //console.log(this.state.books)
     return (
       <div className="App">
         <header className="App-header">
@@ -40,7 +63,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
-        <SearchResults books={this.state.books}/>
+        <SearchResults books={this.state.books} handleClick={this.handleClick}/>
       </div>
     );
   }
