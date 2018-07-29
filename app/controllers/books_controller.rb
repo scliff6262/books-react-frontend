@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  protect_from_forgery with: :null_session
 
   def index
     @books = Book.all
@@ -15,14 +16,14 @@ class BooksController < ApplicationController
   end
 
   def create
+    binding.pry
     @book = Book.new(book_params)
-    @book.author = params[:author].join(", ")
-    @book.categories = params[:categories].join(", ")
     if @book.save
       respond_to do |f|
         f.json { render json: @book }
       end
     end
+    binding.pry
   end
 
   def destroy
@@ -33,7 +34,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:id, :title, :description)
+    params.require(:book).permit(:author, :title, :img_link)
   end
 
 end
