@@ -16,19 +16,20 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @book = Book.new(book_params)
     if @book.save
       respond_to do |f|
         f.json { render json: @book }
       end
     end
-    binding.pry
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
+    respond_to do |f|
+      f.json { render json: @book}
+    end
   end
 
   private
