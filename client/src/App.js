@@ -6,11 +6,11 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Form from './form'
-import Collection from './collection'
+import Form from './Form'
+import Collection from './Collection'
 import './App.css';
 import GOOGLE_API_KEY from './dev'
-import SearchResults from './searchResults'
+import SearchResults from './SearchResults'
 
 class App extends Component {
   constructor(){
