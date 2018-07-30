@@ -59,7 +59,7 @@ class App extends Component {
       },
     }).then( r => r.json() )
     .catch(e => alert(e))
-    .then( json => console.log(json)/*alert(json.title + " has been added to your collection!")*/ )
+    .then( json => alert(json.title + " has been added to your collection!") )
   }
 
 
