@@ -8,6 +8,7 @@ const SearchResults = (props) => {
         <h4 className="title">{book.volumeInfo.title}</h4>
         <p className="author"> { book.volumeInfo.authors ? book.volumeInfo.authors[0] : "No Known Author"} </p>
         <img className="img_link" src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null} alt="Image Not Available"/>
+        <p><a href={book.saleInfo.buyLink}>Buy Here</a></p>
         <br/>
         <button onClick={props.handleClick}>Add to Collection</button>
       </li>)}
