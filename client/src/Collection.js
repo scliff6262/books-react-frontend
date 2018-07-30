@@ -12,8 +12,9 @@ class Collection extends Component {
 
     componentDidMount(){
       fetch('/api/books')
-      .then( r => r.json() )
-      .then( json => this.setState({ myBooks: json }) )
+      .then( r => r.json )
+      .catch( e => console.log(e) )
+      .then( json => console.log(json) )
     }
 
   handleClick = (e) => {
@@ -36,6 +37,7 @@ class Collection extends Component {
   }
 
   render(){
+    console.log(this.state.myBooks)
     if(this.state.myBooks.length > 0){
       return(
         <div>

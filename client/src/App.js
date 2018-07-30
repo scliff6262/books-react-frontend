@@ -41,8 +41,10 @@ class App extends Component {
     e.persist()
     const thisBook = Array.from(e.target.parentElement.children)
     const bookJSON = {}
-    thisBook.slice(0,3).forEach( bookProp => {
-      if(bookProp.nodeName !== "IMG"){
+    thisBook.slice(0,4).forEach( bookProp => {
+      if (bookProp.className === "for_sale") {
+        bookProp.innerHTML === "Not For Sale" ? bookJSON["buy_link"] = null : bookJSON["buy_link"] = bookProp.children[0].getAttribute("href")
+      } else if (bookProp.nodeName !== "IMG"){
         bookJSON[bookProp.getAttribute("class")] = bookProp.innerHTML
       } else {
         bookJSON[bookProp.getAttribute("class")] = bookProp.src
@@ -57,7 +59,7 @@ class App extends Component {
       },
     }).then( r => r.json() )
     .catch(e => alert(e))
-    .then( json => alert(json.title + " has been added to your collection!") )
+    .then( json => console.log(json)/*alert(json.title + " has been added to your collection!")*/ )
   }
 
 

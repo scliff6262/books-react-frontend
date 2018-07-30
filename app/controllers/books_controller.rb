@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @books = Book.all
     respond_to do |f|
       f.json { render json: @books }
+      f.html { render @books }
     end
   end
 
@@ -35,7 +36,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:author, :title, :img_link)
+    params.require(:book).permit(:author, :title, :img_link, :buy_link)
   end
 
 end
