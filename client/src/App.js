@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Form from './Form'
 import Collection from './Collection'
 import './App.css';
-import GOOGLE_API_KEY from './dev'
 import SearchResults from './SearchResults'
+import { fetchBooks } from './actions/bookActions'
+import { addToMyBooks } from './actions/myBookActions'
+import GOOGLE_API_KEY from './dev'
+
 
 class App extends Component {
   constructor(){
     super()
-
     this.state = {
-      searchTerm: "",
-      books: []
+      searchTerm: ""
     }
   }
-
 
   handleChange = (e) => {
     e.persist()
@@ -29,12 +24,11 @@ class App extends Component {
       searchTerm: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault()
     const q = this.state.searchTerm
-    fetch("https://www.googleapis.com/books/v1/volumes?q=intitle:" + q + "&key=" + GOOGLE_API_KEY)
-    .then( r => r.json() )
-    .then( json => this.setState({ books: json.items }))
+    this.props.fetchBooks(q)
   }
 
   handleClick = (e) => {
@@ -50,16 +44,7 @@ class App extends Component {
         bookJSON[bookProp.getAttribute("class")] = bookProp.src
       }
     })
-    fetch('/api/books', {
-      method: 'post',
-      body: JSON.stringify(bookJSON),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    }).then( r => r.json() )
-    .catch(e => alert(e))
-    .then( json => alert(json.title + " has been added to your collection!") )
+    this.props.addToMyBooks(bookJSON)
   }
 
 
@@ -78,7 +63,7 @@ class App extends Component {
               return (
                 <div>
                   <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
-                  <SearchResults books={this.state.books} handleClick={this.handleClick}/>
+                  <SearchResults books={this.props.books} handleClick={this.handleClick}/>
                 </div>
                 )
               }
@@ -91,4 +76,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  books: state.books.books
+})
+
+export default connect(mapStateToProps, { fetchBooks, addToMyBooks })(App);
