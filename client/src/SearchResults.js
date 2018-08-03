@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchResults = (props) => {
   let books = props.books
-  if (books.length > 0){
+  if (books !== undefined){
     books = books.map( book => {
       const book_for_sale = book.saleInfo.saleability === "FOR_SALE"
       return (<li key={book.id}>
@@ -17,7 +17,7 @@ const SearchResults = (props) => {
       </li>)}
     )
   } else {
-    return null
+    return <h4>No Results Found</h4>
   }
   return(
     <div>
