@@ -17,8 +17,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    if @book.save
+    @book = Book.find_or_create_by(book_params)
+    if @book
       respond_to do |f|
         f.json { render json: @book }
       end
