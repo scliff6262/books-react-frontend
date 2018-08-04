@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 const Form = (props) => {
   return(
     <form onSubmit={props.handleSubmit}>
-      <input type='text' placeholder="Title" onChange={props.handleChange} value={props.state.searchTerm}/>
-      <input type='submit' value='Search'/>
+      <div className="input-group">
+        <input className="form-control" type='text' placeholder="Book Title" onChange={props.handleChange} value={props.state.searchTerm}/>
+        <button type='submit' value='Search'>Search</button>
+      </div>
     </form>
   )
 }

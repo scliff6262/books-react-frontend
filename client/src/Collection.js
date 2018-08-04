@@ -36,9 +36,9 @@ class Collection extends Component {
 
     if(this.props.myBooks.length > 0){
       return(
-        <div className="container">
+        <div>
           <form>
-            <input type="text" placeholder="Search Collection" onChange={this.handleChange}/>
+            <input type="text" className="form-control" placeholder="Search Collection" onChange={this.handleChange}/>
           </form>
           <h2>My Collection</h2>
           <ul>
