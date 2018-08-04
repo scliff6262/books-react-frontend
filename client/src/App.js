@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Form from './Form'
 import Collection from './Collection'
 import './App.css';
 import SearchResults from './SearchResults'
+import NavBar from './NavBar'
 import { fetchBooks } from './actions/bookActions'
 import { addToMyBooks } from './actions/myBookActions'
-import GOOGLE_API_KEY from './dev'
 
 
 class App extends Component {
@@ -47,12 +47,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-          <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
-          <NavLink style={{ marginRight: '10px' }} to="/search">Search</NavLink>
-          <NavLink style={{ marginRight: '10px' }} to="/collection">My Collection</NavLink>
-        </div>
+        <div className="App container">
+          <NavBar/>
           <Switch>
             <Route exact path="/" render={ () => <h1>WELCOME</h1>}/>
             <Route exact path="/search" render={() => {
