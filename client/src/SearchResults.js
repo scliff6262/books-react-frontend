@@ -16,6 +16,7 @@ const SearchResults = (props) => {
         {book_for_sale ? <a target="_blank" href={book.saleInfo.buyLink} className="for_sale">Buy Here</a> : <span>Not For Sale</span>}
         <br/>
         <p className="description">{ description ? description : null }</p>
+        <p className="short_description">{description ? description.substring(0, 300) + "..." : null}</p>
         <button onClick={props.handleClick}>Add to Collection</button>
       </li>)}
     )
