@@ -6,7 +6,7 @@ const MyBook = (props) => {
   return(
     <li>
       <div className="card" book-id={book.id}>
-        <img className="card-img-top img-fluid" src={book.img_link} alt="Image Not Available"/>
+        <img className="card-img-top img-fluid" src={book.img_link} alt="Not Available"/>
         <h5 className="card-title">{book.title.substring(0,30)}</h5>
         <p className="author card-subtitle mb-2 text-muted"> {book.author} </p>
         <p className="card-text">{ description ? description : null}</p>

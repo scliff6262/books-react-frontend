@@ -40,7 +40,6 @@ class App extends Component {
     bookJSON["prev_link"] = thisBook[4].href
     thisBook[6].href ? (bookJSON["buy_link"] = thisBook[6].href) : null
     bookJSON["description"] = thisBook[8].innerHTML
-    debugger;
     this.props.addToMyBooks(bookJSON)
   }
 
