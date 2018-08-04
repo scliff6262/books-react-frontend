@@ -32,21 +32,17 @@ class App extends Component {
   }
 
   handleClick = (e) => {
-    e.persist()
     const thisBook = Array.from(e.target.parentElement.children)
     const bookJSON = {}
-    thisBook.slice(0,4).forEach( bookProp => {
-      if (bookProp.className === "for_sale") {
-        bookProp.innerHTML === "Not For Sale" ? bookJSON["buy_link"] = null : bookJSON["buy_link"] = bookProp.children[0].getAttribute("href")
-      } else if (bookProp.nodeName !== "IMG"){
-        bookJSON[bookProp.getAttribute("class")] = bookProp.innerHTML
-      } else {
-        bookJSON[bookProp.getAttribute("class")] = bookProp.src
-      }
-    })
+    bookJSON["title"] = thisBook[0].innerHTML
+    bookJSON["author"] = thisBook[1].innerHTML
+    bookJSON["img_link"] = thisBook[2].src
+    bookJSON["prev_link"] = thisBook[4].href
+    thisBook[6].href ? (bookJSON["buy_link"] = thisBook[6].href) : null
+    bookJSON["description"] = thisBook[8].innerHTML
+    debugger;
     this.props.addToMyBooks(bookJSON)
   }
-
 
   render() {
     return (
