@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Form from './Form'
 import Collection from './Collection'
-import './App.css';
 import SearchResults from './SearchResults'
 import NavBar from './NavBar'
 import { fetchBooks } from './actions/bookActions'
@@ -32,14 +31,14 @@ class App extends Component {
   }
 
   handleClick = (e) => {
-    const thisBook = Array.from(e.target.parentElement.children)
+    const thisBook = Array.from(e.target.parentElement.parentElement.children)
     const bookJSON = {}
     bookJSON["title"] = thisBook[0].innerHTML
     bookJSON["author"] = thisBook[1].innerHTML
     bookJSON["img_link"] = thisBook[2].src
-    bookJSON["prev_link"] = thisBook[4].href
-    thisBook[6].href ? (bookJSON["buy_link"] = thisBook[6].href) : null
-    bookJSON["description"] = thisBook[8].innerHTML
+    bookJSON["prev_link"] = thisBook[5].children[0].href
+    thisBook[5].children[2].href ? (bookJSON["buy_link"] = thisBook[5].children[2].href) : null
+    bookJSON["description"] = thisBook[4].innerHTML
     this.props.addToMyBooks(bookJSON)
   }
 

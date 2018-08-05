@@ -1,9 +1,31 @@
+.description {
+  display: none
+}
+
+.short_description {
+  display: block;
+  margin-left: 5px;
+  overflow: auto;
+}
+
+img.img_link {
+  float: left;
+  clear: both;
+  margin-right: 10px
+}
+
+div.links_div {
+  position: absolute;
+  bottom: 20px;
+  left: 158px;
+}
+
 .card {
   width: 10rem;
   height: 43rem;
 }
 
-li {
+li.my-book {
   list-style: none;
   display: inline;
   float: left;
@@ -12,6 +34,10 @@ li {
 
 .navbar-light {
   background-color: #e3f2fd
+}
+
+.search-bar {
+  margin-bottom: 20px;
 }
 
 .remove{
