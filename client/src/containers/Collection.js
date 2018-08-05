@@ -27,7 +27,7 @@ class Collection extends Component {
 
     handleClick = (e) => {
       const bookId = e.target.parentElement.getAttribute("book-id")
-      if (e.target.innerHTML === "Remove"){
+      if (e.target.innerHTML === "Delete"){
         this.props.deleteFromMyBooks(bookId)
       } else {
         this.props.completedBook(bookId)
@@ -35,8 +35,10 @@ class Collection extends Component {
     }
 
   render(){
+    const greeting = (this.props.location.pathname === "/collection" ? <h4>Up Next:</h4> : <h4>Books Finished:</h4>)
     const booksToRender = (this.props.location.pathname === "/collection" ? this.props.myBooks : this.props.booksRead)
     const searchTermLowerCase = this.state.searchTerm.toLowerCase()
+    debugger;
     const collectionList = booksToRender.filter(book => {
         return book.title.toLowerCase().includes(searchTermLowerCase) || book.author.toLowerCase().includes(searchTermLowerCase)
       }).map(book => {
@@ -48,15 +50,15 @@ class Collection extends Component {
           <form>
             <input type="text" className="form-control" placeholder="Search Collection" onChange={this.handleChange}/>
           </form>
-          <h2>My Collection</h2>
-          <ul>
+          {greeting}
+          <ul cl>
           {collectionList}
           </ul>
         </div>
       )
     } else {
       return(
-        <h2>Your Collection is Empty</h2>
+        <h2>Your Reading List is Empty</h2>
       )
     }
   }

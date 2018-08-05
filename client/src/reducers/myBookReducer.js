@@ -9,7 +9,8 @@ export default function(state = { myBooks: [], booksRead: []}, action){
     case "DELETE_BOOK":
       alert(action.payload.title + " has been removed from your collection.")
       const booksAfterDelete = state.myBooks.filter( book => book.id !== action.payload.id)
-      return Object.assign({}, { myBooks: booksAfterDelete })
+      const finishedBooksAfterDelete = state.booksRead.filter( book => book.id !== action.payload.id)
+      return Object.assign({}, { myBooks: booksAfterDelete, booksRead: finishedBooksAfterDelete })
     case "BOOK_READ":
       alert(action.payload.title + " has been marked as complete.")
       const newMyBooks = state.myBooks.filter( book => book.id !== action.payload.id)
