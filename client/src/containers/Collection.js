@@ -23,7 +23,11 @@ class Collection extends Component {
 
     handleClick = (e) => {
       const bookId = e.target.parentElement.getAttribute("book-id")
-      this.props.deleteFromMyBooks(bookId)
+      if (e.target.innerHTML === "Remove"){
+        this.props.deleteFromMyBooks(bookId)
+      } else {
+        alert("BOOK IS COMPLETE")
+      }
     }
 
   render(){

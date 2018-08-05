@@ -22,7 +22,8 @@ div.links_div {
 
 .card {
   width: 10rem;
-  height: 43rem;
+  height: 45rem;
+  margin-bottom: 10px
 }
 
 li.my-book {
@@ -40,6 +41,11 @@ li.my-book {
   margin-bottom: 20px;
 }
 
+.finished {
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+}
 .remove{
   width: 100%;
   position: absolute;
