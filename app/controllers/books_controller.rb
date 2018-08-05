@@ -16,10 +16,19 @@ class BooksController < ApplicationController
     end
   end
 
+  def update
+    @book = Book.find(params[:id])
+    @book.has_read = true
+    @book.save
+    respond_to do |f|
+      f.json { render json: @book }
+    end 
+  end
+
   def create
     @book = Book.find_or_create_by(book_params)
     @book.has_read = false
-    if @book
+    if @book.save
       respond_to do |f|
         f.json { render json: @book }
       end

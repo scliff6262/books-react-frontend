@@ -3,6 +3,7 @@ import React from 'react'
 const MyBook = (props) => {
   const book = props.book
   const description = (props.book.description.length > 125 ? props.book.description.substring(0, 175) + "..." : props.book.description)
+  console.log(props)
   return(
     <li className="my-book">
       <div className="card" book-id={book.id}>
@@ -12,7 +13,7 @@ const MyBook = (props) => {
         <p className="card-text">{ description ? description : null}</p>
         { book.buy_link ? <div><a className="card-link" target="_blank" href={book.buy_link}>Purchase</a><br/></div> : null }
         { book.prev_link ? <a className="card-link" target="_blank" href={book.prev_link}>Preview</a> : null }
-        <button className="btn btn-primary finished" onClick={props.handleClick}>Finished Reading</button>
+        { book.has_read ? null : <button className="btn btn-primary finished" onClick={props.handleClick}>Finished Reading</button>}
         <button className="btn btn-danger remove" onClick={props.handleClick}>Remove</button>
       </div>
     </li>

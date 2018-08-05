@@ -48,7 +48,8 @@ class App extends Component {
         <div className="App container">
           <NavBar/>
           <Switch>
-            <Route exact path="/" render={ () => <h1>WELCOME</h1>}/>
+            <Route exact path="/collection" component={Collection}/>
+            <Route exact path="/complete" component={Collection}/>
             <Route exact path="/search" render={() => {
               return (
                 <div>
@@ -58,7 +59,6 @@ class App extends Component {
                 )
               }
             }/>
-            <Route exact path="/collection" component={Collection}/>
           </Switch>
         </div>
       </Router>

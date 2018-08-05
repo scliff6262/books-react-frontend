@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import MyBook from '../components/MyBook'
-import { fetchBooksNotRead, deleteFromMyBooks } from '../actions/myBookActions'
+import {
+  fetchMyBooks,
+  deleteFromMyBooks,
+  completedBook
+} from '../actions/myBookActions'
 import { connect } from 'react-redux'
 
 
@@ -13,7 +17,7 @@ class Collection extends Component {
   }
 
     componentDidMount(){
-      this.props.fetchBooksNotRead()
+      this.props.fetchMyBooks()
     }
 
     handleChange = (e) => {
@@ -26,19 +30,19 @@ class Collection extends Component {
       if (e.target.innerHTML === "Remove"){
         this.props.deleteFromMyBooks(bookId)
       } else {
-        alert("BOOK IS COMPLETE")
+        this.props.completedBook(bookId)
       }
     }
 
   render(){
+    const booksToRender = (this.props.location.pathname === "/collection" ? this.props.myBooks : this.props.booksRead)
     const searchTermLowerCase = this.state.searchTerm.toLowerCase()
-    const collectionList = this.props.myBooks.filter(book => {
+    const collectionList = booksToRender.filter(book => {
         return book.title.toLowerCase().includes(searchTermLowerCase) || book.author.toLowerCase().includes(searchTermLowerCase)
       }).map(book => {
         return <MyBook key={book.id} book={book} handleClick={this.handleClick}/>
       })
-
-    if(this.props.myBooks.length > 0){
+    if(booksToRender.length > 0){
       return(
         <div>
           <form>
@@ -60,7 +64,8 @@ class Collection extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  myBooks: state.myBooks.myBooks
+  myBooks: state.myBooks.myBooks,
+  booksRead: state.myBooks.booksRead
 })
 
-export default connect(mapStateToProps, { fetchBooksNotRead, deleteFromMyBooks })(Collection)
+export default connect(mapStateToProps, { fetchMyBooks, deleteFromMyBooks, completedBook })(Collection)

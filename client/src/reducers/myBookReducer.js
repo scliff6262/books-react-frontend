@@ -1,9 +1,9 @@
 export default function(state = { myBooks: [], booksRead: []}, action){
   switch(action.type) {
     case "FETCH_UNREAD_BOOKS":
-      debugger;
       const booksNotRead = action.payload.filter(book => book.has_read === false)
-      return Object.assign({}, { myBooks: booksNotRead })
+      const booksRead = action.payload.filter(book => book.has_read === true)
+      return Object.assign({}, { myBooks: booksNotRead, booksRead: booksRead })
     case "ADD_BOOK":
       return state
     case "DELETE_BOOK":
@@ -11,7 +11,9 @@ export default function(state = { myBooks: [], booksRead: []}, action){
       const booksAfterDelete = state.myBooks.filter( book => book.id !== action.payload.id)
       return Object.assign({}, { myBooks: booksAfterDelete })
     case "BOOK_READ":
-
+      alert(action.payload.title + " has been marked as complete.")
+      const newMyBooks = state.myBooks.filter( book => book.id !== action.payload.id)
+      return Object.assign({}, { myBooks: newMyBooks, booksRead: state.booksRead.concat(action.payload) })
     default:
       return state
   }
