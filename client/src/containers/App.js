@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Form from './Form'
+import Form from '../components/Form'
 import Collection from './Collection'
-import SearchResults from './SearchResults'
-import NavBar from './NavBar'
-import { fetchBooks } from './actions/bookActions'
-import { addToMyBooks } from './actions/myBookActions'
+import SearchResults from '../components/SearchResults'
+import NavBar from '../components/NavBar'
+import { fetchBooks } from '../actions/bookActions'
+import { addToMyBooks } from '../actions/myBookActions'
 
 
 class App extends Component {
