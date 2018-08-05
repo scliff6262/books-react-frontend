@@ -38,7 +38,6 @@ class Collection extends Component {
     const greeting = (this.props.location.pathname === "/collection" ? <h4>Up Next:</h4> : <h4>Books Finished:</h4>)
     const booksToRender = (this.props.location.pathname === "/collection" ? this.props.myBooks : this.props.booksRead)
     const searchTermLowerCase = this.state.searchTerm.toLowerCase()
-    debugger;
     const collectionList = booksToRender.filter(book => {
         return book.title.toLowerCase().includes(searchTermLowerCase) || book.author.toLowerCase().includes(searchTermLowerCase)
       }).map(book => {
@@ -51,7 +50,7 @@ class Collection extends Component {
             <input type="text" className="form-control" placeholder="Search Collection" onChange={this.handleChange}/>
           </form>
           {greeting}
-          <ul cl>
+          <ul>
           {collectionList}
           </ul>
         </div>
