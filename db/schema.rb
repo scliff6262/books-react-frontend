@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_021133) do
+ActiveRecord::Schema.define(version: 2018_08_05_201509) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_08_04_021133) do
     t.string "buy_link"
     t.text "description"
     t.string "prev_link"
+    t.boolean "has_read"
   end
 
 end

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MyBook from '../components/MyBook'
-import { fetchMyBooks, deleteFromMyBooks } from '../actions/myBookActions'
+import { fetchBooksNotRead, deleteFromMyBooks } from '../actions/myBookActions'
 import { connect } from 'react-redux'
 
 
@@ -13,7 +13,7 @@ class Collection extends Component {
   }
 
     componentDidMount(){
-      this.props.fetchMyBooks()
+      this.props.fetchBooksNotRead()
     }
 
     handleChange = (e) => {
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => ({
   myBooks: state.myBooks.myBooks
 })
 
-export default connect(mapStateToProps, { fetchMyBooks, deleteFromMyBooks })(Collection)
+export default connect(mapStateToProps, { fetchBooksNotRead, deleteFromMyBooks })(Collection)

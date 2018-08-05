@@ -1,9 +1,9 @@
-export function fetchMyBooks() {
+export function fetchBooksNotRead() {
   return function(dispatch) {
     fetch("/api/books")
     .then( r => r.json() )
     .then( json => dispatch({
-      type: "FETCH_MY_BOOKS",
+      type: "FETCH_UNREAD_BOOKS",
       payload: json
     }))
   }
@@ -46,3 +46,9 @@ export function addToMyBooks(bookJSON){
       })
     }
   }
+
+export function completedBook(bookId) {
+  return function(dispatch) {
+    fetch('')
+  }
+}
