@@ -21,6 +21,7 @@ npm install
 ```
 
 The application can then be started using "foreman." This will start the rails server as well as launch the React app.
+(Make sure you are in the books-react directory when using foreman.)
 
 ```
 foreman start -p 3000
