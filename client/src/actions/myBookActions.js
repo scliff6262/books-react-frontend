@@ -13,13 +13,14 @@ export function deleteFromMyBooks(bookId){
   return function(dispatch){
     fetch('/api/books/' + bookId, {
       method: 'delete',
-      body: {},
+      body: JSON.stringify({}),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
     }).then( r => r.json() )
-      .then( json => { dispatch({
+      .then( json => {
+        dispatch({
         type: "DELETE_BOOK",
         payload: json
       })
@@ -51,7 +52,7 @@ export function completedBook(bookId) {
   return function(dispatch) {
     fetch('/api/books/' + bookId, {
       method: 'put',
-      body: {},
+      body: JSON.stringify({}),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

@@ -22,7 +22,7 @@ class BooksController < ApplicationController
     @book.save
     respond_to do |f|
       f.json { render json: @book }
-    end 
+    end
   end
 
   def create
