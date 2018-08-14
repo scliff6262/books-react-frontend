@@ -13,7 +13,7 @@ export function deleteFromMyBooks(bookId){
   return function(dispatch){
     fetch('/api/books/' + bookId, {
       method: 'delete',
-      body: {},
+      body: JSON.stringify({}),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
