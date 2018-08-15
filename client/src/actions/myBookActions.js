@@ -1,6 +1,6 @@
 export function fetchMyBooks() {
   return function(dispatch) {
-    fetch("https://bookshelf-app-api.herokuapp.com/api/books")
+    fetch("https://bookshelf-app-api.herokuapp.com/api/books", { mode: 'no-cors' })
     .then( r => r.json() )
     .then( json => dispatch({
       type: "FETCH_UNREAD_BOOKS",
@@ -14,6 +14,7 @@ export function deleteFromMyBooks(bookId){
     fetch('https://bookshelf-app-api.herokuapp.com/api/books/' + bookId, {
       method: 'delete',
       body: JSON.stringify({}),
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -32,6 +33,7 @@ export function addToMyBooks(bookJSON){
     fetch('https://bookshelf-app-api.herokuapp.com/api/books', {
       method: 'post',
       body: JSON.stringify(bookJSON),
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -52,6 +54,7 @@ export function completedBook(bookId) {
     fetch('https://bookshelf-app-api.herokuapp.com/api/books/' + bookId, {
       method: 'put',
       body: JSON.stringify({}),
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
