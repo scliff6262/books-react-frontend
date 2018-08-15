@@ -18,7 +18,7 @@ export function fetchMyBooks() {
 export function deleteFromMyBooks(bookId){
   return function(dispatch){
     fetch('https://bookshelf-app-api.herokuapp.com/api/books/' + bookId, {
-      method: 'delete',
+      method: 'DELETE',
       body: JSON.stringify({}),
       mode: 'no-cors',
       headers: {
@@ -37,7 +37,7 @@ export function deleteFromMyBooks(bookId){
 export function addToMyBooks(bookJSON){
   return function(dispatch) {
     fetch('https://bookshelf-app-api.herokuapp.com/api/books', {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify(bookJSON),
       mode: 'no-cors',
       headers: {
@@ -58,7 +58,7 @@ export function addToMyBooks(bookJSON){
 export function completedBook(bookId) {
   return function(dispatch) {
     fetch('https://bookshelf-app-api.herokuapp.com/api/books/' + bookId, {
-      method: 'put',
+      method: 'PUT',
       body: JSON.stringify({}),
       mode: 'no-cors',
       headers: {
