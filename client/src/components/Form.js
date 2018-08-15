@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Form = (props) => {
-  return(
+const Form = (props) => (
     <form className="search-bar" onSubmit={props.handleSubmit}>
       <div className="input-group">
         <input className="form-control" type='text' placeholder="Book Title" onChange={props.handleChange} value={props.state.searchTerm}/>
@@ -9,6 +8,5 @@ const Form = (props) => {
       </div>
     </form>
   )
-}
 
 export default Form
