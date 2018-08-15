@@ -1,6 +1,12 @@
 export function fetchMyBooks() {
   return function(dispatch) {
-    fetch("https://bookshelf-app-api.herokuapp.com/api/books", { mode: 'no-cors' })
+    fetch("https://bookshelf-app-api.herokuapp.com/api/books", {
+      mode: 'no-cors' ,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
     .then( r => r.json() )
     .then( json => dispatch({
       type: "FETCH_UNREAD_BOOKS",
