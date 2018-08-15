@@ -1,6 +1,6 @@
 export function fetchMyBooks() {
   return function(dispatch) {
-    fetch("/api/books")
+    fetch("/api/books.json")
     .then( r => r.json() )
     .then( json => dispatch({
       type: "FETCH_UNREAD_BOOKS",
@@ -11,7 +11,7 @@ export function fetchMyBooks() {
 
 export function deleteFromMyBooks(bookId){
   return function(dispatch){
-    fetch('/api/books/' + bookId, {
+    fetch('/api/books/' + bookId + ".json", {
       method: 'delete',
       body: JSON.stringify({}),
       headers: {
@@ -29,7 +29,7 @@ export function deleteFromMyBooks(bookId){
 
 export function addToMyBooks(bookJSON){
   return function(dispatch) {
-    fetch('/api/books', {
+    fetch('/api/books.json', {
       method: 'post',
       body: JSON.stringify(bookJSON),
       headers: {
@@ -49,7 +49,7 @@ export function addToMyBooks(bookJSON){
 
 export function completedBook(bookId) {
   return function(dispatch) {
-    fetch('/api/books/' + bookId, {
+    fetch('/api/books/' + bookId + ".json", {
       method: 'put',
       body: JSON.stringify({}),
       headers: {
