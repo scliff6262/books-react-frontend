@@ -5,13 +5,14 @@ export function fetchMyBooks() {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
+      }
     })
     .then( r => r.json() )
     .then( json => dispatch({
       type: "FETCH_UNREAD_BOOKS",
       payload: json
-    }))
+      })
+    )
   }
 }
 
