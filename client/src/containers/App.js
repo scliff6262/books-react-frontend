@@ -53,7 +53,7 @@ class App extends Component {
                 <div>
                   <h1>Welcome to Bookshelf!</h1>
                   <p>
-                  This application allows you to keep track of books you would like to read, as well as ones you have already completed
+                  This application allows you to keep track of books you would like to read, as well as ones you have already completed.
                   </p>
                   <p>
                   Select 'Add to List' to search through the Google Books library. Once a book is selected it will appear on your "Reading List".
