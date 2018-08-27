@@ -48,9 +48,23 @@ class App extends Component {
         <div className="App container">
           <NavBar/>
           <Switch>
+            <Route exact path="/" render={ () => {
+              return (
+                <div>
+                  <h1>Welcome to Bookshelf!</h1>
+                  <p>
+                  This application allows you to keep track of books you would like to read, as well as ones you have already completed
+                  </p>
+                  <p>
+                  Select 'Add to List' to search through the Google Books library. Once a book is selected it will appear on your "Reading List".
+                  Once you have finished reading this book, select "Finished Reading" and it will save to your list of "Completed Books".
+                  </p>
+                </div>
+              )
+            } }
             <Route exact path="/collection" component={Collection}/>
             <Route exact path="/complete" component={Collection}/>
-            <Route exact path="/search" render={() => {
+            <Route exact path="/search" render={ () => {
               return (
                 <div>
                   <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state}/>
