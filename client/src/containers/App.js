@@ -60,8 +60,9 @@ class App extends Component {
                   Once you have finished reading this book, select "Finished Reading" and it will save to your list of "Completed Books".
                   </p>
                 </div>
-              )
-            } }
+                )
+              }
+            }/>
             <Route exact path="/collection" component={Collection}/>
             <Route exact path="/complete" component={Collection}/>
             <Route exact path="/search" render={ () => {
